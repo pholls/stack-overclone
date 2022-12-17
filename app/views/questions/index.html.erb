@@ -1,0 +1,4 @@
+<h1>Recent Questions</h1>
+<% @questions.each do |question| %>
+  <%= link_to question.title.truncate(50), question %>
+<% end %>
