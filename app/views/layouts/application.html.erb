@@ -10,6 +10,27 @@
   </head>
 
   <body>
-    <%= yield %>
+   <div id="layout">
+      <header>
+        <div class="actions">
+          <%= link_to 'Home', root_path %>
+          <% if logged_in? %>
+            <%= button_to "Logout", sessions_path, method: :delete %>
+          <% else %>
+            <%= button_to 'Sign in', login_path, method: :get %>
+            <%= button_to 'Sign up', signup_path, method: :get %>
+          <% end %>
+        </div>
+      </header>
+      <hr>
+      <div id="main">
+        <div class="notifications">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>
+        <%= yield %>
+      </div>
+      <div class="footer"></div>
+    </div>
   </body>
 </html>
