@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:id])
   end
 
   def show
@@ -26,6 +27,13 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @question = Question.find(params[:id])
+    @question.update(question_params)
+    if @question.valid?
+      redirect_to @question
+    else
+      redirect_to @question, notice: 'error'
+    end
   end
 
   def destroy
