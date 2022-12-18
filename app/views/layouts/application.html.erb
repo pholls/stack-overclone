@@ -15,8 +15,8 @@
         <div class="actions">
           <%= button_to 'Home', root_path, method: :get, class: 'inline' %>
           <% if logged_in? %>
-            <%= button_to "Logout", sessions_path, method: :delete, class: 'inline' %>
             <%= button_to current_user.name, user_path(current_user), method: :get, class: 'inline' %>
+            <%= button_to "Logout", sessions_path, method: :delete, class: 'inline' %>
           <% else %>
             <%= button_to 'Sign in', login_path, method: :get, class: 'inline' %>
             <%= button_to 'Sign up', signup_path, method: :get, class: 'inline' %>
