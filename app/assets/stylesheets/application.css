@@ -14,7 +14,17 @@
  *= require_self
  */
 
+ @font-face {
+   font-family: 'Montserrat';
+   src: url('Montserrat-Regular.ttf');
+ }
+
 .button_to,
 .button_to.inline {
   display: inline-block;
+}
+
+body {
+  background-color: #F2F0EB;
+  font-family: "Montserrat";
 }
