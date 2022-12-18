@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
 
-  resources :questions
-  resources :answers
+  resources :questions do
+    resources :answers, shallow: true do
+      member do
+        post 'accept'
+        post 'unaccept'
+      end
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
