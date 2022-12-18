@@ -1,7 +1,5 @@
 class AnswersController < ApplicationController
-  def index
-    # get all answers for current user
-  end
+  before_action :authorized, only: [:create, :edit, :update, :destroy, :accept, :unaccept]
 
   def create
     @question = Question.find(params[:question_id])
