@@ -19,12 +19,26 @@
    src: url('Montserrat-Regular.ttf');
  }
 
+body {
+  font-family: "Montserrat";
+}
+
 .button_to,
 .button_to.inline {
   display: inline-block;
 }
 
-body {
-  background-color: #F2F0EB;
-  font-family: "Montserrat";
+.question-bg {
+  background-color: #e2e2e2;
+}
+
+.answer-bg {
+  background-color: #988661;
+}
+
+ul.no-bullet {
+  list-style: none;
+}
+.inline {
+  display: inline-block;
 }
