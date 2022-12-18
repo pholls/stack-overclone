@@ -1,4 +1,18 @@
+<%= button_to 'Ask a question', new_question_path, method: :get %>
+
 <h1>Recent Questions</h1>
-<% @questions.each do |question| %>
-  <%= link_to question.title.truncate(50), question %>
-<% end %>
+
+<h2>Questions with no answers</h2>
+<ul>
+  <%= render @questions.unanswered %>
+</ul>
+
+<h2>Questions with unaccepted answers</h2>
+<ul>
+  <%= render @questions.unaccepted %>
+</ul>
+
+<h2>Questions with accepted answers (maybe you can do even better)</h2>
+<ul>
+  <%= render @questions.accepted %>
+</ul>
