@@ -1,7 +1,7 @@
 <% authorized = @question.user == current_user %>
 <div class='question-bg'>
   <h1><%= @question.title %></h1>
-  <p><%= @question.body %></p>
+  <p><%= markdown @question.body %></p>
   <%= button_to('Edit question', edit_question_path(@question), method: :get) if authorized %>
   <% if @question.updated_at > @question.created_at %>
     <small>edited <%= @question.updated_at.strftime('%D %T %Z') %></small>
@@ -10,7 +10,7 @@
 
 <% if @question.accepted? %>
   <h2>Accepted answer:</h2>
-  <p><%= @question.accepted_answer.body %></p>
+  <p><%= markdown @question.accepted_answer.body %></p>
   <%= button_to('unaccept', unaccept_answer_path(@question.accepted_answer), class: 'inline') if authorized %>
   <br />
 <% end %>
@@ -20,7 +20,7 @@
   <ul class='no-bullet'>
     <% @question.unaccepted_answers.each do |answer| %>
       <li>
-        <p class='inline'><%= answer.body %></p>
+        <p class='inline'><%= markdown answer.body %></p>
         <%= button_to('accept', accept_answer_path(answer), class: 'inline') if authorized %>
       </li>
     <% end %>
