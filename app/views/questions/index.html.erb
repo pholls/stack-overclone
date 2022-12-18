@@ -1,4 +1,10 @@
-<%= button_to 'Ask a question', new_question_path, method: :get %>
+<% if current_user %>
+  <%= button_to 'Ask a question', new_question_path, method: :get %>
+<% else %>
+  <%= link_to 'Sign in', login_path %> or
+  <%= link_to 'Sign up', signup_path %>
+  to ask a question
+<% end %>
 
 <h1>Recent Questions</h1>
 
