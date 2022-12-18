@@ -1,5 +1,4 @@
 class Question < ApplicationRecord
-  # could have made this polymorphic with Answer, but went with separate models instead
   has_many :answers, dependent: :destroy
   belongs_to :user
 
@@ -12,6 +11,10 @@ class Question < ApplicationRecord
 
   def accepted?
     answers.accepted.any?
+  end
+
+  def unaccepted?
+    !accepted?
   end
 
   def accepted_answer
