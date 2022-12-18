@@ -1,0 +1,22 @@
+<h1><%= @question.title %></h1>
+<p><%= @question.body %></p>
+
+<% if @question.accepted? %>
+  <h2>Accepted answer:</h2>
+  <p>
+    <%= @question.accepted_answer.body %>
+  </p>
+    <%= button_to('unaccept', unaccept_answer_path(@question.accepted_answer)) if @question.user == current_user %>
+<% end %>
+
+<ul>
+  <% @question.unaccepted_answers.each do |answer| %>
+    <li>
+      <%= answer.body %>
+      <%= button_to('accept', accept_answer_path(answer)) if @question.user == current_user %>
+    </li>
+  <% end %>
+</ul>
+
+Add a new answer
+<%= render partial: "answers/form", question: @question %>
