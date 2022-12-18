@@ -3,6 +3,9 @@
   <h1><%= @question.title %></h1>
   <p><%= @question.body %></p>
   <%= button_to('Edit question', edit_question_path(@question), method: :get) if authorized %>
+  <% if @question.updated_at > @question.created_at %>
+    <small>edited <%= @question.updated_at.strftime('%D %T %Z') %></small>
+  <% end %>
 </div>
 
 <% if @question.accepted? %>
