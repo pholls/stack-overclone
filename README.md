@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ruby version
+`ruby 3.0.2`
 
-Things you may want to cover:
+## Rails version
+`Rails 7.0.4`
 
-* Ruby version
+## Starting this
+- clone the repo
+- `bundle install`
+- `bundle exec rails server`
+- navigate to `http://127.0.0.1:3000/`
 
-* System dependencies
+## Future development
+- Markdown WYSIWYG editor (with previews)
+- editing answers
+- view diffs of edited answers/questions
+- voting on questions and answers (`acts_as_votable` gem)
+- delete user account
+- notifications (twilio) when answers accepted, or questions answered
+- more styling (bootstrap)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
