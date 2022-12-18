@@ -3,11 +3,6 @@ class User < ApplicationRecord
 
   # could have used devise here, went with lower-weight bcrypt
   has_secure_password
-
-  validates :name, :email, presence: true, uniqueness: true
-  validates :password, presence: true
-
-  attr_accessor :password_digest
-  has_many :questions
-  has_many :answers
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
 end

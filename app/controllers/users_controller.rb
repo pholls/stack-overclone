@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       @user.save
-      redirect_to @user
+      redirect_to login_path
     else
-      redirect :new
+      redirect_to signup_path, notice: 'error'
     end
   end
 
