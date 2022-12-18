@@ -14,7 +14,7 @@
 <h2><%= authorized ? 'Your' :  "#{@user.name}'s" %> questions</h2>
 <div>
   <% if @user.questions.any? %>
-    <ul>
+    <ul class='no-bullet'>
       <% @user.questions.each do |question| %>
         <li><%= link_to question.title.truncate(50), question %></li>
       <% end %>
@@ -28,7 +28,7 @@
 <h2><%= authorized ? 'Your' :  "#{@user.name}'s" %> answers</h2>
 <div>
   <% if @user.answers.any? %>
-    <ul>
+    <ul class='no-bullet'>
       <% @user.answers.each do |answer| %>
         <li>
           <%= link_to answer.body.truncate(50), answer.question %>

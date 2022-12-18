@@ -9,16 +9,16 @@
 <h1>Recent Questions</h1>
 
 <h2>Questions with no answers</h2>
-<ul>
+<ul class='no-bullet'>
   <%= render @questions.unanswered %>
 </ul>
 
 <h2>Questions with unaccepted answers</h2>
-<ul>
+<ul class='no-bullet'>
   <%= render @questions.unaccepted %>
 </ul>
 
 <h2>Questions with accepted answers (maybe you can do even better)</h2>
-<ul>
+<ul class='no-bullet'>
   <%= render @questions.accepted %>
 </ul>

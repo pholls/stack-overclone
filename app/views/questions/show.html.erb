@@ -1,22 +1,28 @@
-<h1><%= @question.title %></h1>
-<p><%= @question.body %></p>
+<% authorized = @question.user == current_user %>
+<div class='question-bg'>
+  <h1><%= @question.title %></h1>
+  <p><%= @question.body %></p>
+  <%= button_to('Edit question', edit_question_path(@question), method: :get) if authorized %>
+</div>
 
 <% if @question.accepted? %>
   <h2>Accepted answer:</h2>
-  <p>
-    <%= @question.accepted_answer.body %>
-  </p>
-    <%= button_to('unaccept', unaccept_answer_path(@question.accepted_answer)) if @question.user == current_user %>
+  <p><%= @question.accepted_answer.body %></p>
+  <%= button_to('unaccept', unaccept_answer_path(@question.accepted_answer), class: 'inline') if authorized %>
+  <br />
 <% end %>
 
-<ul>
-  <% @question.unaccepted_answers.each do |answer| %>
-    <li>
-      <%= answer.body %>
-      <%= button_to('accept', accept_answer_path(answer)) if @question.user == current_user %>
-    </li>
-  <% end %>
-</ul>
+<% if @question.unaccepted_answers.any? %>
+  <h2>Unaccepted answers:</h2>
+  <ul class='no-bullet'>
+    <% @question.unaccepted_answers.each do |answer| %>
+      <li>
+        <p class='inline'><%= answer.body %></p>
+        <%= button_to('accept', accept_answer_path(answer), class: 'inline') if authorized %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <% if current_user %>
   Add a new answer
