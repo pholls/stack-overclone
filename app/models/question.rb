@@ -5,9 +5,12 @@ class Question < ApplicationRecord
   validates :body, :user_id, :title, presence: true
 
   scope :unanswered, -> { where.missing(:answers) }
-  scope :answered, -> { left_outer_joins(:answers) }
+  scope :answered, -> { joins(:answers) }
   scope :accepted, -> { answered.where( answers: { accepted: true } ) }
-  scope :unaccepted, -> { answered.where( answers: { accepted: false } ).uniq }
+
+  def self.unaccepted
+    answered.reject { |q| q.answers.any? { |answer| answer.accepted } }
+  end
 
   def accepted?
     answers.accepted.any?
