@@ -6,6 +6,9 @@
 ## Rails version
 `Rails 7.0.4`
 
+## Postgres version
+`postgres (PostgreSQL) 14.6 (Homebrew)`
+
 ## Starting this
 - clone the repo
 - `bundle install`
