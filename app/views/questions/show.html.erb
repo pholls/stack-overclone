@@ -1,0 +1,37 @@
+<% authorized = @question.user == current_user %>
+<div class='question-bg'>
+  <h1><%= @question.title %></h1>
+  <p><%= markdown @question.body %></p>
+  <%= button_to('Edit question', edit_question_path(@question), method: :get) if authorized %>
+  <% if @question.updated_at > @question.created_at %>
+    <small>edited <%= @question.updated_at.strftime('%D %T %Z') %></small>
+  <% end %>
+</div>
+
+<% if @question.accepted? %>
+  <h2>Accepted answer:</h2>
+  <p><%= markdown @question.accepted_answer.body %></p>
+  <%= button_to('unaccept', unaccept_answer_path(@question.accepted_answer), class: 'inline') if authorized %>
+  <br />
+<% end %>
+
+<% if @question.unaccepted_answers.any? %>
+  <h2>Unaccepted answers:</h2>
+  <ul class='no-bullet'>
+    <% @question.unaccepted_answers.each do |answer| %>
+      <li>
+        <p class='inline'><%= markdown answer.body %></p>
+        <%= button_to('accept', accept_answer_path(answer), class: 'inline') if authorized %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if current_user %>
+  Add a new answer
+  <%= render partial: "answers/form", question: @question %>
+<% else %>
+  <%= link_to 'Sign in', login_path %> or
+  <%= link_to 'Sign up', signup_path %>
+  to answer this question
+<% end %>

@@ -1,0 +1,46 @@
+<p style="color: green"><%= notice %></p>
+<% authorized = current_user == @user %>
+
+<% if authorized %>
+  <h1>Welcome, <%= @user.name %></h1>
+  <%= button_to 'Ask a question', new_question_path, method: :get %>
+  <% else %>
+  <%= link_to 'Sign in', login_path %> or
+  <%= link_to 'Sign up', signup_path %>
+  to ask a question
+  <h1><%= @user.name %>'s contributions</h1>
+<% end %>
+
+<h2><%= authorized ? 'Your' :  "#{@user.name}'s" %> questions</h2>
+<div>
+  <% if @user.questions.any? %>
+    <ul class='no-bullet'>
+      <% @user.questions.each do |question| %>
+        <li><%= link_to question.title.truncate(50), question %></li>
+      <% end %>
+    </ul>
+  <% else %>
+      Looks like you don't have any questions yet.
+      Try <%= link_to 'asking one', new_question_path %>.
+  <% end %>
+</div>
+
+<h2><%= authorized ? 'Your' :  "#{@user.name}'s" %> answers</h2>
+<div>
+  <% if @user.answers.any? %>
+    <ul class='no-bullet'>
+      <% @user.answers.each do |answer| %>
+        <li>
+          <%= link_to answer.body.truncate(50), answer.question %>
+          <%= "✅" if answer.accepted %>
+          on <%= link_to answer.question.title.truncate(50), answer.question %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>
+      Looks like you don't have any answers yet.
+      Try <%= link_to 'adding one', root_path %>.
+    </p>
+  <% end %>
+</div>

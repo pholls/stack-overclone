@@ -1,0 +1,24 @@
+<% if current_user %>
+  <%= button_to 'Ask a question', new_question_path, method: :get %>
+<% else %>
+  <%= link_to 'Sign in', login_path %> or
+  <%= link_to 'Sign up', signup_path %>
+  to ask a question
+<% end %>
+
+<h1>Recent Questions</h1>
+
+<h2>Questions with no answers</h2>
+<ul class='no-bullet'>
+  <%= render @questions.unanswered %>
+</ul>
+
+<h2>Questions with unaccepted answers</h2>
+<ul class='no-bullet'>
+  <%= render @questions.unaccepted %>
+</ul>
+
+<h2>Questions with accepted answers (maybe you can do even better)</h2>
+<ul class='no-bullet'>
+  <%= render @questions.accepted %>
+</ul>

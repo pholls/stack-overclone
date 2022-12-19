@@ -1,0 +1,7 @@
+<%= form_for @question do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Title" %>
+  <%= f.label :body %>
+  <%= f.text_area :body, placeholder: "Body" %>
+  <%= f.submit "Ask" %>
+<% end %>
