@@ -23,4 +23,4 @@
 - delete user account
 - notifications (twilio) when answers accepted, or questions answered
 - more styling (bootstrap)
-
+- tests tests tests!
