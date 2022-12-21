@@ -9,7 +9,7 @@ class Question < ApplicationRecord
   scope :accepted, -> { answered.where( answers: { accepted: true } ) }
 
   def self.unaccepted
-    answered.reject { |q| q.answers.any? { |answer| answer.accepted } }
+    answered.reject { |q| q.answers.any? { |answer| answer.accepted } }.uniq
   end
 
   def accepted?
